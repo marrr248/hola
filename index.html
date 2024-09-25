@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/8bb53a16d9.js" crossorigin="anonymous"></script>
+    <title>Venta de Galletas</title>
+    <link rel=”stylesheet” href="uno.css" />
+
+</head>
+
+<style>
+        @font-face {
+        font-family: lonely cake;
+        src: url(cool.otf);
+        src: url(cool.woff);
+        src: url(cool.woff2);
+        }
+
+    *::after,
+    *::before,
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .bolsita{
+        width: 40px;
+        height: 40px;
+        stroke: #000;
+        position: fixed;
+        top: 170px;
+        left: 1260px;
+        .iconobolsa{
+        font-size: 30px;
+    }
+    }
+    .bolsita:hover{
+        cursor: pointer;
+    }
+
+    header{
+        display: flex;
+        justify-content: space-between;
+        padding: 30px 0 40px 0;
+    }
+
+    h4{
+        position: absolute;
+        top: 180px;
+        text-align: center;
+        width: 100%;
+        font-size: 60px;
+        line-height: 0.5;
+    }
+
+    .contargalleta{
+        position: absolute;
+        top: 55%;
+        right: 0;
+
+        background-color: #000;
+        color: #fff;
+        width: 25px;
+        height: 25px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+    #conta-galleta{
+        font-size: 12px;
+    }
+
+    .container-cart-products{
+        position: absolute;
+        top: 50px;
+        right: 0;
+
+        background-color: #fff;
+        width: 400px;
+        z-index: 1;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.20);
+        border-radius: 10px;
+        
+    }
+    .cart-product{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 30px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.20);
+    }
+    .info-cart-product{
+        display: flex;
+        justify-content: space-between;
+        flex: 0.8;
+    }
+
+    .titulo-producto-carrito{
+        font-size: 15px;
+    }
+    .precio-producto-carrito{
+        font-weight: 700;
+        font-size: 15px;
+        margin-left: 10px;
+    }
+    .cantidad-producto-carrito{
+        font-weight: 400;
+        font-size: 15px;
+    }
+
+    .iconocerrar{
+        width: 25px;
+        height: 25px;
+    }
+    .iconocerrar:hover{
+        stroke: red;
+        cursor: pointer;
+    }
+    .totaal{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+        gap: 20px;
+    }
+
+    .totaal h3{
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .total-pagar{
+        font-size: 20px;
+        font-weight: 900;
+    }
+
+    .hidden-cart{
+        display: none;
+    }
+
+
+
+
+    /* Main */
+    .container-items{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .item{
+        border-radius: 10px;
+    }
+
+    .item:hover{
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.20);
+    }
+
+    .item img{
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 10px 10px 0 0;
+        transition: all .5s;
+    }
+
+    .item figure{
+        overflow: hidden;
+    }
+
+    .item:hover img{
+        transform: scale(1.2);
+    }
+
+    .info-product{
+        padding: 15px 30px;
+        line-height: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .price{
+        font-size: 18px;
+        font-weight: 900;
+    }
+
+    .info-product button{
+        border: none;
+        background: none;
+        background-color: #000;
+        color: #fff;
+        padding: 15px 10px;
+        cursor: pointer;
+    }
+
+    .nogalleta{
+        padding: 20px;
+        text-align: center;
+    }
+
+
+    .hidden{
+        display: none;
+    }
+
+
+        body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        }
+        .container {
+            position: absolute;
+            top: 220px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .producto {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 10px;
+            width: 200px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            line-height: 2;
+            h3{
+                font-size: 15px;
+                width: 180px;
+                line-height: 1.2;
+                font-weight: normal;
+            }
+        }
+        .producto img {
+            max-width: 100%;
+            height: 50%;
+            border-radius: 50px;
+        }
+        .producto:hover {
+            transform: scale(1.10);
+        }
+        .producto.chocolate:hover {
+            background-color: rgb(94, 177, 177);
+            cursor: pointer;
+        }
+        .producto.azul:hover {
+            background-color: rgb(114, 194, 194);
+            cursor: pointer;
+        }
+        .producto.fresa:hover {
+            background-color: rgb(157, 206, 206); 
+            cursor: pointer;
+        }
+        .producto.azucar:hover {
+            background-color: rgb(154, 207, 207); 
+            cursor: pointer;
+        }
+        .producto.cake:hover {
+            background-color: rgb(121, 194, 194); 
+            cursor: pointer;
+        }
+        .producto.cookie:hover {
+            background-color: rgb(94, 177, 177); 
+            cursor: pointer;
+        }
+        .producto.hershey:hover {
+            background-color: rgb(68, 177, 177); 
+            cursor: pointer;
+        }
+        .producto.eminem:hover {
+            background-color: rgb(24, 139, 139); 
+            cursor: pointer;
+        }
+        .producto.avena:hover {
+            background-color: rgb(224, 196, 164); 
+            cursor: pointer;
+        }
+        .producto.vainilla:hover {
+            background-color: rgb(224, 196, 164); 
+            cursor: pointer;
+        }
+        .producto.cocoa:hover {
+            background-color: rgb(224, 196, 164); 
+            cursor: pointer;
+        }
+        .producto.brownie:hover {
+            background-color: rgb(224, 196, 164); 
+            cursor: pointer;
+        }
+
+        .producto.coco:hover {
+            background-color: rgb(224, 196, 164); 
+            cursor: pointer;
+        }
+        .producto.cafe:hover {
+            background-color: rgb(224, 196, 164); 
+            cursor: pointer;
+        }
+        .producto.dirt:hover {
+            background-color: rgb(224, 196, 164); 
+            cursor: pointer;
+        }
+        .producto p {
+            font-size: 16px;
+            color: #666;
+            cursor: context-menu;
+        }
+        .producto button {
+            background-color: rgb(34, 119, 145);
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 10px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+            align-items: center;
+        }
+        .producto button:hover {
+            background-color: rgb(18, 82, 102);
+        }
+        .product.cafe img {
+            max-width: 100%;
+            height: 50%;
+            border-radius: 50px;
+        }
+        .p{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            
+        }
+        .h2{
+            font-family: cool;
+        }
+        .hola{
+            color: rgb(0, 0, 0);
+            font-family: lonely cake;
+            font-size: 80px;
+            position: fixed;
+            top: 0%;
+            left: 0;
+            right: 0;
+            height: 120px;
+            width: 100%;
+            background-color: rgb(135, 204, 204);
+            font-weight: 700;
+            align-content: center;
+        }
+        .encabezadoluisbakery {
+        background-color: rgb(82, 168, 194);
+        font-family: lonely cake;
+        padding-top: 0;
+        font-size: 30px;
+        width: 100%;
+        height: 80px;
+        color: black;
+        text-align: center;
+        line-height: 0;
+        line-break: 0;
+        align-content: center;
+        top: 0;
+        left: 0;
+        right: 0;
+        position: fixed;
+        } 
+
+        .titulo{
+        color: rgb(0, 0, 0);
+        text-decoration: black;
+        line-height: 0%;
+        top: 0;
+        }
+        .contain{
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background-color: rgb(255, 255, 255);
+        height: 60px;
+        width: 100%;
+        border-bottom: 1px solid rgb(82, 168, 194);
+    }
+    .prueba{
+        position: fixed;
+        top: 90px;
+        left: 170px;
+        display: block;
+        background-color: rgb(144, 204, 223);
+        padding: 5px;
+        text-decoration: none;
+        color: rgb(145, 134, 134);
+        font-size: 25px;
+        border-radius: 10px;
+        .pruba{
+        color: #4b4b4b;
+        font-family: lonely cake;
+        text-decoration: none;
+        }
+    }
+
+    .prueba:hover{
+        -moz-transform: rotate(-5deg);
+        -moz-box-shadow: 10px 10px 20px rgb(55, 164, 197);
+        -webkit-transform: rotate(-5deg);
+        -webkit-box-shadow: 10px 10px 20px rgb(19, 89, 110);
+        margin-left: 10px;
+    }
+
+    .prueba2{
+        position: fixed;
+        top: 90px;
+        left: 460px;
+        display: block;
+        background-color: rgb(144, 204, 223);
+        padding: 5px;
+        text-decoration: none;
+        color: white;
+        font-size: 25px;
+        border-radius: 10px;
+        .pruba2{
+        color: #4b4b4b;
+        font-family: lonely cake;
+        text-decoration: none;
+        }
+    }
+
+    .prueba2:hover{
+        -moz-transform: rotate(-5deg);
+        -moz-box-shadow: 10px 10px 20px rgb(55, 164, 197);
+        -webkit-transform: rotate(-5deg);
+        -webkit-box-shadow: 10px 10px 20px rgb(19, 89, 110);
+        margin-left: 10px;
+    }
+
+    .prueba3{
+        position: fixed;
+        top: 90px;
+        left: 740px;
+        display: block;
+        background-color: rgb(144, 204, 223);
+        padding: 5px;
+        text-decoration: none;
+        color: white;
+        font-size: 25px;
+        border-radius: 10px;
+        .pruba3{
+        color: #4b4b4b;
+        font-family: lonely cake;
+        text-decoration: none;
+        }
+    }
+
+    .prueba3:hover{
+        -moz-transform: rotate(-5deg);
+        -moz-box-shadow: 10px 10px 20px rgb(55, 164, 197);
+        -webkit-transform: rotate(-5deg);
+        -webkit-box-shadow: 10px 10px 20px rgb(19, 89, 110);
+        margin-left: 10px;
+    }
+
+    .prueba4{
+        position: fixed;
+        top: 90px;
+        left: 1050px;
+        display: block;
+        background-color: rgb(144, 204, 223);
+        padding: 5px;
+        text-decoration: none;
+        color: white;
+        font-size: 25px;
+        border-radius: 10px;
+        .pruba4{
+        color: #4b4b4b;
+        font-family: lonely cake;
+        text-decoration: none;
+        }
+    }
+
+    .prueba4:hover{
+        -moz-transform: rotate(-5deg);
+        -moz-box-shadow: 10px 10px 20px rgb(55, 164, 197);
+        -webkit-transform: rotate(-5deg);
+        -webkit-box-shadow: 10px 10px 20px rgb(19, 89, 110);
+        margin-left: 10px;
+    }
+
+    .copyrights{
+    position:absolute;
+    top: 1470px;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background-color: rgb(18, 118, 148);
+    text-align: center;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 2;
+  }
+</style>
+
+
+   
+<body>
+
+    <h4>CATÁLOGO</h4>
+    <div class="container">
+        <div class="producto chocolate">
+            <img src="file1.jpg">
+            <h2>Luis' Chocolate</h2>
+            <h3 class="texto">Deliciosa galleta con chispas de chocolate</h3>
+            <p class="price">$25</p>
+            <button onclick="agregarAlCarrito('Luis Chocolate', 25, 'file64.jpg')" class="btn-add-cart">COMPRAR</button>
+        </div>
+        <div class="producto azul">
+            <img src="file2.jpg">
+            <h2>Blue Sugar</h2>
+            <h3 class="texto">Llénate de alegría con la galleta de glaseado azul</h3>
+            <p class="price">$25</p>
+            <button onclick="agregarAlCarrito('Blue Sugar', 25)" class="btn-add-cart">COMPRAR</button>
+        </div>
+        <div class="producto fresa">
+            <img src="file3.jpg">
+            <h2>Orange Cake</h2>
+            <h3 class="texto">Un toque de sol con cada bocado de nuestro pastel</h3>
+            <p class="price">$50</p>
+            <button onclick="agregarAlCarrito('Orange Cake', 50)" class="btn-add-cart">COMPRAR</button>
+        </div>
+        <div class="producto azucar">
+            <img src="file4.jpg">
+            <h2>White Sugar</h2>
+            <h3 class="texto">White sugar cambia tu dia con sus coloridas chispas </h3>
+            <p class="price">$25</p>
+            <button onclick="agregarAlCarrito('White Sugar', 25)" class="btn-add-cart">COMPRAR</button>
+        </div>
+        <div class="producto cake">
+            <img src="file5.jpg">
+            <h2>Chocolate cake</h2>
+            <h3 class="texto">Es mejor tener una vida dulce con un pastel</h3>
+            <p class="price">$50</p>
+            <button onclick="agregarAlCarrito('Chocolate cake', 50)" class="btn-add-cart">COMPRAR</button>
+        </div>
+        <div class="producto cookie">
+            <img src="file6.jpg">
+            <h2>Chiveada</h2>
+            <h3 class="texto">Nada parecido con el rubor de nuestra galleta</h3>
+            <p class="price">$30</p>
+            <button onclick="agregarAlCarrito('Chiveada', 30)" class="btn-add-cart">COMPRAR</button>
+        </div>
+        <div class="producto hershey">
+            <img src="file7.jpg">
+            <h2>Hershey's </h2>
+            <h3 class="texto">¿Cómo elegir entre Hershey's y galletas?</h3>
+            <p class="price">$40</p>
+            <button onclick="agregarAlCarrito('Hershey', 40)" class="btn-add-cart">COMPRAR</button>
+        </div>
+        <div class="producto eminem">
+            <img src="file8.jpg">
+            <h2>M&M's Cookie</h2>
+            <h3 class="texto">Nuestra explosión de sabores con M&M's</h3>
+            <p class="price">$35</p>
+            <button onclick="agregarAlCarrito('M&M Cookie', 35)" class="btn-add-cart">COMPRAR</button>
+        </div>
+        <div class="producto avena">
+            <img src="file9.jpg">
+            <h2>Cinna-Crunch</h2>
+            <h3 class="texto">En vez de una Cinnamon Roll, puedes tener una Cinna-Crunch.</h3>
+            <p class="price">$25</p>
+            <button onclick="agregarAlCarrito('Cinna-Crunch', 25)" class="btn-add-cart">COMPRAR</button>
+        </div>
+        <div class="producto vainilla">
+            <img src="file10.jpg">
+            <h2>Almendras'</h2>
+            <h3 class="texto">Está crujiente galleta donde cada bocado es un toque de nuez.</h3>
+            <p class="price">$25</p>
+            <button onclick="agregarAlCarrito('Almendras', 25)" class="btn-add-cart">COMPRAR</button>
+        </div>
+        <div class="producto cocoa">
+            <img src="file11.jpg">
+            <h2>Hot Cocoa</h2>
+            <h3 class="texto">Sumérgete en el rico sabor de nuestra galleta de cocoa.</h3>
+            <p class="price">$25</p>
+            <button onclick="agregarAlCarrito('White Sugar')" class="btn-add-cart">COMPRAR</button>
+        </div>
+        <div class="producto brownie">
+            <img src="file12.jpg">
+            <h2>Brownie Cookie</h2>
+            <h3 class="texto">Disfruta del placer decadente de nuestra galleta de brownie</h3>
+            <p class="price">$30</p>
+            <button onclick="agregarAlCarrito('Brownie Cookie', 30)" class="btn-add-cart">COMPRAR</button>
+        </div>
+        <div class="producto coco">
+            <img src="file13.jpg">
+            <h2>Cocos'</h2>
+            <h3 class="texto">Prueba nuestra Coco's que con cada bocado es un paraíso tropical.</h3>
+            <p class="price">$30</p>
+            <button onclick="agregarAlCarrito('Cocos', 30)" class="btn-add-cart">COMPRAR</button>
+        </div>
+        <div class="producto cafe">
+            <img src="file14.jpg">
+            <h2>Coffee Cookie</h2>
+            <h3 class="texto">El sabor del café se encuentra en una textura crujiente.</h3>
+            <p class="price">$25</p>
+            <button onclick="agregarAlCarrito('Coffee Cookie', 25)" class="btn-add-cart">COMPRAR</button>
+        </div>
+        <div class="producto dirt">
+            <img src="file15.jpg">
+            <h2>Dirt Cookie</h2>
+            <h3 class="texto">Explora el lado divertido de nuestra dirt cookie.</h3>
+            <p class="price">$25</p>
+            <button onclick="agregarAlCarrito('Dirt Cookie', 25)" class="btn-add-cart">COMPRAR</button>
+        </div>
+    </div> 
+
+    <header>
+        <div class="bolsita">
+            <div class="contener-bolsita">
+                <p class="iconobolsa">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </p>
+                <div class="contargalleta">
+                    <span id="conta-galleta">0</span>
+                </div>
+            </div>
+
+            <div class="container-cart-products hidden-cart">
+                <div class="row-product hidden">
+                    <div class="cart-product">
+                        <div class="info-cart-product">
+                            <span class="cantidad-producto-carrito"></span>
+                            <p class="titulo-producto-carrito"></p>
+                            <span class="precio-producto-carrito"></span>
+                        </div>
+                        <p class="iconocerrar">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </p>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="totaal hidden">
+                    <h3>Total:</h3>
+                    <span class="total-pagar">$200</span>
+                </div>
+                <p class="nogalleta">¡No tienes galletas en tu orden!</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="encabezadoluisbakery">
+        <p><a class="titulo"
+            href="inicio.html"> <i class="fa-solid fa-cookie-bite"></i> LUIS' BAKERY</a></p>
+   </div>
+
+    <table class="contain">
+        <tr>
+        <td class="prueba">
+            <a class="pruba"href="uno.html">&nbsp;PRODUCTOS&nbsp;</a>
+        </td>
+        <td class="prueba2">
+            <a class="pruba2"href="carrote.html">&nbsp;MI CARRITO&nbsp;</a>
+        </td>
+        <td class="prueba3">
+            <a class="pruba3"href="quienessomos.html">&nbsp;¿QUIÉNES SOMOS?&nbsp;</a>
+        </td>
+        <td class="prueba4">
+            <a class="pruba4"href="contactanos.html">&nbsp;CONTACTANOS&nbsp;</a>
+        </td>
+        </tr>
+    </table>
+</body>
+
+<div class="copyrights">
+    <h1>&nbsp;&nbsp;&nbsp;LUIS' BAKERY</h1>
+    <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2024 Luis' Bakery | © Todos los derechos reservados.</p>
+</div>
+
+/* Codigo para transferir el producto a la otra pagina de carrito */
+<script>
+    function agregarAlCarrito(producto, precio) {
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        let item = carrito.find(item => item.nombre === producto);
+        if (item) {
+            item.cantidad++;
+        } else {
+            carrito.push({ nombre: producto, precio: precio, cantidad: 1 });
+        }
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        alert(producto + ' agregado a MI CARRITO!');
+    }
+</script>
+
+
+<script src="uno.js"></script>
+</html>
