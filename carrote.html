@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+    <style>
+        .todooo{
+            position: relative;
+            top: 130px;
+        }
+        .producto {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .precio-total {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .cantidad {
+            margin: 0 10px;
+        }
+        img {
+            width: 50px; /* Ajusta el tamaño según sea necesario */
+            height: auto;
+            margin-right: 10px;
+        }
+        .hola{
+            color: rgb(0, 0, 0);
+            font-family: lonely cake;
+            font-size: 80px;
+            position: fixed;
+            top: 0%;
+            left: 0;
+            right: 0;
+            height: 120px;
+            width: 100%;
+            background-color: rgb(135, 204, 204);
+            font-weight: 700;
+            align-content: center;
+        }
+        .encabezadoluisbakery {
+        background-color: rgb(82, 168, 194);
+        font-family: lonely cake;
+        padding-top: 0;
+        font-size: 30px;
+        width: 100%;
+        height: 80px;
+        color: black;
+        text-align: center;
+        line-height: 0;
+        line-break: 0;
+        align-content: center;
+        top: 0;
+        left: 0;
+        right: 0;
+        position: fixed;
+        } 
+
+        .titulo{
+        color: rgb(0, 0, 0);
+        text-decoration: black;
+        line-height: 0%;
+        top: 0;
+        }
+        .contain{
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background-color: rgb(255, 255, 255);
+        height: 60px;
+        width: 100%;
+        border-bottom: 1px solid rgb(82, 168, 194);
+    }
+    .prueba{
+        position: fixed;
+        top: 90px;
+        left: 170px;
+        display: block;
+        background-color: rgb(144, 204, 223);
+        padding: 5px;
+        text-decoration: none;
+        color: rgb(145, 134, 134);
+        font-size: 25px;
+        border-radius: 10px;
+        .pruba{
+        color: #4b4b4b;
+        font-family: lonely cake;
+        text-decoration: none;
+        }
+    }
+
+    .prueba:hover{
+        -moz-transform: rotate(-5deg);
+        -moz-box-shadow: 10px 10px 20px rgb(55, 164, 197);
+        -webkit-transform: rotate(-5deg);
+        -webkit-box-shadow: 10px 10px 20px rgb(19, 89, 110);
+        margin-left: 10px;
+    }
+
+    .prueba2{
+        position: fixed;
+        top: 90px;
+        left: 460px;
+        display: block;
+        background-color: rgb(144, 204, 223);
+        padding: 5px;
+        text-decoration: none;
+        color: white;
+        font-size: 25px;
+        border-radius: 10px;
+        .pruba2{
+        color: #4b4b4b;
+        font-family: lonely cake;
+        text-decoration: none;
+        }
+    }
+
+    .prueba2:hover{
+        -moz-transform: rotate(-5deg);
+        -moz-box-shadow: 10px 10px 20px rgb(55, 164, 197);
+        -webkit-transform: rotate(-5deg);
+        -webkit-box-shadow: 10px 10px 20px rgb(19, 89, 110);
+        margin-left: 10px;
+    }
+
+    .prueba3{
+        position: fixed;
+        top: 90px;
+        left: 740px;
+        display: block;
+        background-color: rgb(144, 204, 223);
+        padding: 5px;
+        text-decoration: none;
+        color: white;
+        font-size: 25px;
+        border-radius: 10px;
+        .pruba3{
+        color: #4b4b4b;
+        font-family: lonely cake;
+        text-decoration: none;
+        }
+    }
+
+    .prueba3:hover{
+        -moz-transform: rotate(-5deg);
+        -moz-box-shadow: 10px 10px 20px rgb(55, 164, 197);
+        -webkit-transform: rotate(-5deg);
+        -webkit-box-shadow: 10px 10px 20px rgb(19, 89, 110);
+        margin-left: 10px;
+    }
+
+    .prueba4{
+        position: fixed;
+        top: 90px;
+        left: 1050px;
+        display: block;
+        background-color: rgb(144, 204, 223);
+        padding: 5px;
+        text-decoration: none;
+        color: white;
+        font-size: 25px;
+        border-radius: 10px;
+        .pruba4{
+        color: #4b4b4b;
+        font-family: lonely cake;
+        text-decoration: none;
+        }
+    }
+
+    .prueba4:hover{
+        -moz-transform: rotate(-5deg);
+        -moz-box-shadow: 10px 10px 20px rgb(55, 164, 197);
+        -webkit-transform: rotate(-5deg);
+        -webkit-box-shadow: 10px 10px 20px rgb(19, 89, 110);
+        margin-left: 10px;
+    }
+
+    .copyrights{
+    position:absolute;
+    top: 1470px;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background-color: rgb(18, 118, 148);
+    text-align: center;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 2;
+  }
+    </style>
+</head>
+<body>
+
+<div class="todooo">
+    <h1>Carrito</h1>
+    <div id="carrito"></div>
+    <button onclick="vaciarCarrito()">Vaciar carrito</button>
+    <div class="precio-total" id="total">Total: $0</div>
+    <br>
+</div>
+
+
+    <script>
+        function mostrarCarrito() {
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            let carritoDiv = document.getElementById('carrito');
+            let total = 0;
+
+            if (carrito.length === 0) {
+                carritoDiv.innerHTML = '<p>El carrito está vacío.</p>';
+            } else {
+                carritoDiv.innerHTML = carrito.map((item, index) => {
+                    const subtotal = item.precio * item.cantidad;
+                    total += subtotal;
+                    return `
+                        <div class="producto">
+                            <img src="file${index + 1}.jpg" alt="${item.nombre}">
+                            <span>${item.nombre} - $${item.precio}</span>
+                            <div>
+                                <button onclick="cambiarCantidad(${index}, -1)">-</button>
+                                <span class="cantidad">${item.cantidad}</span>
+                                <button onclick="cambiarCantidad(${index}, 1)">+</button>
+                                <button onclick="eliminarProducto(${index})">🗑️</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            document.getElementById('total').innerText = 'Total: $' + total.toFixed(2);
+        }
+
+        function cambiarCantidad(index, cambio) {
+            let carrito = JSON.parse(localStorage.getItem('carrito'));
+            if (carrito[index].cantidad + cambio > 0) {
+                carrito[index].cantidad += cambio;
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+                mostrarCarrito();
+            }
+        }
+
+        function eliminarProducto(index) {
+            let carrito = JSON.parse(localStorage.getItem('carrito'));
+            carrito.splice(index, 1);
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            mostrarCarrito();
+        }
+
+        function vaciarCarrito() {
+            localStorage.removeItem('carrito');
+            mostrarCarrito();
+        }
+
+        window.onload = mostrarCarrito;
+    </script>
+
+        <div class="encabezadoluisbakery">
+            <p><a class="titulo"
+                href="inicio.html"> <i class="fa-solid fa-cookie-bite"></i> LUIS' BAKERY</a></p>
+       </div>
+    
+        <table class="contain">
+            <tr>
+            <td class="prueba">
+                <a class="pruba"href="uno.html">&nbsp;PRODUCTOS&nbsp;</a>
+            </td>
+            <td class="prueba2">
+                <a class="pruba2"href="carrote.html">&nbsp;MI CARRITO&nbsp;</a>
+            </td>
+            <td class="prueba3">
+                <a class="pruba3"href="quienessomos.html">&nbsp;¿QUIÉNES SOMOS?&nbsp;</a>
+            </td>
+            <td class="prueba4">
+                <a class="pruba4"href="contactanos.html">&nbsp;CONTACTANOS&nbsp;</a>
+            </td>
+            </tr>
+        </table>
+    </body>
+    
+    <div class="copyrights">
+        <h1>&nbsp;&nbsp;&nbsp;LUIS' BAKERY</h1>
+        <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2024 Luis' Bakery | © Todos los derechos reservados.</p>
+    </div>
+    
+</body>
+</html>
